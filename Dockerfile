@@ -1,4 +1,4 @@
-FROM debian:stable-slim as fetcher
+FROM debian:stable-slim AS fetcher
 COPY build/fetch_binaries.sh /tmp/fetch_binaries.sh
 
 RUN apt-get update && apt-get install -y \
@@ -84,7 +84,7 @@ COPY --from=fetcher /tmp/fortio /usr/local/bin/fortio
 # Setting User and Home
 USER root
 WORKDIR /root
-ENV HOSTNAME netshoot
+ENV HOSTNAME=netshoot
 
 # ZSH Themes
 RUN curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh | sh \
