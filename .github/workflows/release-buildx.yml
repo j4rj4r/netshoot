@@ -73,13 +73,8 @@ jobs:
         name: Sign the images with GitHub OIDC Token
         env:
           DIGEST: ${{ steps.build-and-push.outputs.digest }}
-          TAGS: ${{ steps.build-and-push.outputs.metadata }}
         run: |
-          images=""
-          for tag in $(echo "$TAGS" | jq -r '."image.name"'); do
-            images+="${tag}@${DIGEST} "
-          done
-          cosign sign --yes ${images}
+          cosign sign --yes j4rj4r/netshoot@${DIGEST}
 
 
 
