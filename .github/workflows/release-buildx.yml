@@ -39,6 +39,6 @@ jobs:
         uses: docker/build-push-action@v4
         with:
           push: true
-          tags: $GITHUB_REPOSITORY:$GITHUB_SHA, $GITHUB_REPOSITORY:$RELEASE_VERSION, $GITHUB_REPOSITORY:latest
+          tags: netshoot:$GITHUB_SHA, netshoot:$RELEASE_VERSION, netshoot:latest
 
             
