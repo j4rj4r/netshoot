@@ -3,7 +3,8 @@ COPY build/fetch_binaries.sh /tmp/fetch_binaries.sh
 
 RUN apt-get update && apt-get install -y \
   curl \
-  wget
+  wget \
+  && rm -rf /var/lib/apt/lists/*
 
 RUN /tmp/fetch_binaries.sh
 
@@ -73,19 +74,11 @@ RUN set -ex \
     perl-crypt-ssleay \
     perl-net-ssleay
 
-# Installing ctop - top-like container monitor
+# Installing network tools binaries
 COPY --from=fetcher /tmp/ctop /usr/local/bin/ctop
-
-# Installing calicoctl
 COPY --from=fetcher /tmp/calicoctl /usr/local/bin/calicoctl
-
-# Installing termshark
 COPY --from=fetcher /tmp/termshark /usr/local/bin/termshark
-
-# Installing grpcurl
 COPY --from=fetcher /tmp/grpcurl /usr/local/bin/grpcurl
-
-# Installing fortio
 COPY --from=fetcher /tmp/fortio /usr/local/bin/fortio
 
 # Setting User and Home
@@ -94,15 +87,16 @@ WORKDIR /root
 ENV HOSTNAME netshoot
 
 # ZSH Themes
-RUN curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh | sh
-RUN git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
-RUN git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
+RUN curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh | sh \
+    && git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions \
+    && git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
+
 COPY zshrc .zshrc
 COPY motd motd
 
 # Fix permissions for OpenShift and tshark
-RUN chmod -R g=u /root
-RUN chown root:root /usr/bin/dumpcap
+RUN chmod -R g=u /root \
+    && chown root:root /usr/bin/dumpcap
 
 # Running ZSH
 CMD ["zsh"]
