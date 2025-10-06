@@ -28,10 +28,6 @@ jobs:
         run: echo ${{ steps.buildx.outputs.platforms }}
       - name: Set Release Tag Env
         run: echo "RELEASE_VERSION=${GITHUB_REF#refs/*/}" >> $GITHUB_ENV
-      - name: Debug check
-        run: |
-          echo "vars.DOCKER_USER='${{ vars.DOCKER_USER }}'"
-          echo "secrets.DOCKER_PASSWORD is set? ${ { !!secrets.DOCKER_PASSWORD } }" || true
       -
         name: Login to Docker Hub
         uses: docker/login-action@v3
