@@ -162,6 +162,7 @@ To troubleshoot these issues, `netshoot` includes a set of powerful tools as rec
     curl \
     dhcping \
     drill \
+    ecapture \
     ethtool \
     file \
     fping \
@@ -350,6 +351,13 @@ Fortio is a fast, small, reusable, embeddable go library as well as a command li
 
 ```
 $ fortio load http://www.google.com
+```
+
+## Ecapture
+
+Capture SSL/TLS text content without a CA certificate using eBPF.  
+```bash
+$ ecapture tls -m text -i eth0 &
 ```
 
 ## Contribution

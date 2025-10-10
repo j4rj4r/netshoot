@@ -80,6 +80,7 @@ COPY --from=fetcher /tmp/calicoctl /usr/local/bin/calicoctl
 COPY --from=fetcher /tmp/termshark /usr/local/bin/termshark
 COPY --from=fetcher /tmp/grpcurl /usr/local/bin/grpcurl
 COPY --from=fetcher /tmp/fortio /usr/local/bin/fortio
+COPY --from=fetcher /tmp/ecapture /usr/local/bin/ecapture
 
 # Setting User and Home
 USER root
