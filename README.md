@@ -162,7 +162,6 @@ To troubleshoot these issues, `netshoot` includes a set of powerful tools as rec
     curl \
     dhcping \
     drill \
-    ecapture \
     ethtool \
     file \
     fping \
@@ -217,6 +216,7 @@ Additionally, the following binaries are included:
     termshark
     grpcurl
     fortio
+    ecapture
 
 ## **Sample Use-cases**
 
