@@ -7,7 +7,6 @@ get_latest_release() {
     sed -E 's/.*"([^"]+)".*/\1/'                                    # Pluck JSON value
 }
 
-
 ARCH=$(uname -m)
 case $ARCH in
     x86_64)
@@ -85,8 +84,6 @@ get_ecapture() {
   mv ecapture-${VERSION}-linux-${ARCH}/ecapture "/tmp/ecapture" && \
   chmod +x /tmp/ecapture
 }
-
-
 
 get_ctop
 get_calicoctl

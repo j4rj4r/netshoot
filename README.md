@@ -162,7 +162,6 @@ To troubleshoot these issues, `netshoot` includes a set of powerful tools as rec
     curl \
     dhcping \
     drill \
-    ecapture \
     ethtool \
     file \
     fping \
@@ -217,6 +216,7 @@ Additionally, the following binaries are included:
     termshark
     grpcurl
     fortio
+    ecapture
 
 ## **Sample Use-cases**
 
@@ -354,7 +354,9 @@ $ fortio load http://www.google.com
 ```
 
 ## Ecapture
-
+> [!WARNING]  
+> Supports Linux/Android kernel versions x86_64 4.18 and above, aarch64 5.5 and above.  
+> Need `--privileged` mode to run
 Capture SSL/TLS text content without a CA certificate using eBPF.  
 ```bash
 $ ecapture tls -m text -i eth0 &
